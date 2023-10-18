@@ -1,8 +1,7 @@
-import copy
+from copy import deepcopy
 
 
 class Fubbi:
-    from copy import deepcopy
     """
     The Fubbi class was created by a genius. Infact, his genius was so great that humans couldn't even
     comprehend it until the future when he was long dead. His greatest invention was that of the
@@ -14,7 +13,7 @@ class Fubbi:
     It takes input from a user in the form of an integer. It then looks to insert this value into ._values.
     However, it is only allowed to insert it if:
         1. There are no duplicates already
-        2. The previous number, sequentaly, excists alredy in ._values.
+        2. The previous number, or the next number, sequentaly, excists alredy in ._values.
     If either of these rules are broken, the Integer will be thrown in ._junk, to where it can be later used.
     However, Junk operates as that of a Queue (First In, First Out). Where, for every action (i.e. insert, remove) done
     to ._values, the item at the top of the ._junk stack will be removed and then used. It can only be used if it meets
@@ -71,9 +70,14 @@ class Fubbi:
         If not, it gets readded via junk_add() to the back of junk and nothing happens
         :return: None
         """
+        if len(self._junk) > 0:
 
-        out = deepcopy(self._junk [0])
-        self.insert(out)
+            out = deepcopy(self._junk [0])
+            del self._junk [0]
+            if out not in self._values and ((out - 1) in self._values or (out + 1) in self._values):
+                self.insert(out)
+            else:
+                self.junk_add(out)
         return
 
     def junk_add (self,value):
@@ -90,12 +94,12 @@ class Fubbi:
         """
         Inserts the value in ._values if the following conditons are met:
              1. There are no duplicates already
-             2. The previous number, sequentaly, excists alredy in ._values.
+             2. The previous or next number, sequentaly, excists alredy in ._values.
         If not, junk_add() should be called.
         :param value: int
         :return: none
         """
-        if value not in self._values and (value -1) in self._values:
+        if value not in self._values and ((value -1) in self._values or (value +1 in self._values)):
             cheat = []
             found = False
             for val in self._values:
@@ -105,6 +109,8 @@ class Fubbi:
                     found = True
                 else:
                     cheat.append(val)
+            if not found:
+                cheat.append(value)
             self._values = cheat
         elif len(self._values) == 0:
             self._values.append(value)
@@ -122,10 +128,10 @@ class Fubbi:
         :return value: the value at i.
         """
         out = None
-        if (self._values == 0):
+        if (len(self._values) == 0):
             self.insert(i)
         else:
-            itr = self._values [((i+1)% len(self._values)) -1]
+            itr = ((i+1)% len(self._values)) -1
             out = self._values [itr]
             del self._values [itr]
 
@@ -171,11 +177,10 @@ class Fubbi:
         """
         string = ""
         for value in self._values:
-            string += value + ","
+            string += (f'{value},')
         string += "j,"
         for junk in self._junk:
-            string += junk + ","
-        string.removesuffix(",")
+            string += (f'{junk},')
         return string
 
     def overwrite (self,fubbi):
@@ -186,18 +191,20 @@ class Fubbi:
         :return: None
         """
         fork = fubbi.split(",")
+
         self._values = []
         self._junk = []
         switch = False
-        
+
         for prong in fork:
-            if switch:
-                self.junk_add(prong)
-            else:
-                if prong == "j":
-                    switch = True
+            if prong.isdigit():
+                if switch:
+                    self._junk.append(int(prong))
                 else:
-                    self.insert(prong)
+                    if prong == "j":
+                        switch = True
+                    else:
+                        self._values.append(int(prong))
 
 
         return
@@ -219,6 +226,7 @@ class Fubbi:
         for junk in Fubbi._junk:
             self._junk(value)
         return
+
 
 
 
