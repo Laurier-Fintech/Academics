@@ -57,7 +57,7 @@ The Big Book Problem
 	DICTIONARY_ONE.UNION(DICTIONARY_TWO) ->          SUCCESS
 		| Dictionary_One:		['Apple', 'Orange', 'Grape', 'Banana', 'Blue', 'Red']
 		| Dictionary_Two:		['Blue', 'Grape', 'Red', 'Orange']
-		| .words (Expected):	['Apple', 'Orange', 'Grape', 'Banana', 'Blue', 'Red']
+		| .words (Expected):		['Apple', 'Orange', 'Grape', 'Banana', 'Blue', 'Red']
 		| .words (Actual):		['Apple', 'Orange', 'Grape', 'Banana', 'Blue', 'Red']
 6. BIG BOOK CLASS: 
 	TESTING ENCRYPTION ->                            SUCCESS
