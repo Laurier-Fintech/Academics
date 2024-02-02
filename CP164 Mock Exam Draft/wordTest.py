@@ -11,7 +11,7 @@ class TestOne:
     - TestThree(): 10 marks
     - TestFour(): 5 marks
 
-    Total Possible Marks: 18
+    Total Possible Marks: 27
     """
     CORRECT = "I Love Laurier FinTech!"
     TEST = "I Love Laurier FinTech!<>"
