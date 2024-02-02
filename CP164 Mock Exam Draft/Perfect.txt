@@ -1,0 +1,69 @@
+The Word Processor Problem
+===================================
+1. ERROR CHECK
+	TEST BLANK REMOVE FROM STACK ->                  SUCCESS
+	TEST BLANK REMOVE FROM QUEUE ->                  SUCCESS
+2. TESTING STACK FUNCTIONS
+	INSERT '<>FinTech!' ->                           SUCCESS
+	INSERT 'Laurier' ->                              SUCCESS
+	INSERT 'Love' ->                                 SUCCESS
+	INSERT 'I' ->                                    SUCCESS
+	REMOVE ['I ' expected] ->                        SUCCESS
+	REMOVE ['Love ' expected] ->                     SUCCESS
+	REMOVE ['Laurier ' expected] ->                  SUCCESS
+	REMOVE ['FinTech!' expected] ->                  SUCCESS
+3. TESTING QUEUE FUNCTIONS
+	INSERT 'I' ->                                    SUCCESS
+	INSERT 'Love' ->                                 SUCCESS
+	INSERT 'Laurier' ->                              SUCCESS
+	INSERT 'FinTech!<>' ->                           SUCCESS
+	REMOVE ['I ' expected] ->                        SUCCESS
+	REMOVE ['Love ' expected] ->                     SUCCESS
+	REMOVE ['Laurier ' expected] ->                  SUCCESS
+	REMOVE ['FinTech!' expected] ->                  SUCCESS
+TEST FILE IO:
+	READING/RE-WRITING FROM FILE interstellar.txt -> SUCCESS
+		| EXPECTED: ["interstellar.txt"]; ACTUAL: ["newstellar.txt"]
+
+-----------------------------------
+CLASS MARK:	27/27
+
+The Big Book Problem
+===================================
+2. TESTING INSERT, PREPEND, APPEND:
+	INSERT 'Really' (@0) ->                          SUCCESS
+	INSERT 'Laurier' (@100) ->                       SUCCESS
+	INSERT 'Love' (@1) ->                            SUCCESS
+	INSERT 'I' ->                                    SUCCESS
+	INSERT 'FinTech' ->                              SUCCESS
+2. TESTING _LINEAR_SEARCH:
+	SEARCH: 'I' ->                                   SUCCESS
+	SEARCH: 'Love' ->                                SUCCESS
+	SEARCH: 'FinTech' ->                             SUCCESS
+	SEARCH: 'And David Brown' ->                     SUCCESS
+3. TESTING DICT_ROTATE:
+	ROTATE: (3) ->                                   SUCCESS
+	ROTATE: (-3) ->                                  SUCCESS
+	ROTATE: (100) ->                                 SUCCESS
+	*BLANK* ROTATE: (100) ->                         SUCCESS
+4. TESTING REMOVE:
+	REMOVE: 'Was' ->                                 SUCCESS
+	REMOVE: 'I' ->                                   SUCCESS
+	REMOVE: 'Thinking' ->                            SUCCESS
+	REMOVE: 'That' ->                                SUCCESS
+	REMOVE: 'Yay' ->                                 SUCCESS
+	CHECKING WORD ORDER: ->                          SUCCESS
+5. TEST UNION:
+	DICTIONARY_ONE.UNION(DICTIONARY_TWO) ->          SUCCESS
+		| Dictionary_One:		['Apple', 'Orange', 'Grape', 'Banana', 'Blue', 'Red']
+		| Dictionary_Two:		['Blue', 'Grape', 'Red', 'Orange']
+		| .words (Expected):	['Apple', 'Orange', 'Grape', 'Banana', 'Blue', 'Red']
+		| .words (Actual):		['Apple', 'Orange', 'Grape', 'Banana', 'Blue', 'Red']
+6. BIG BOOK CLASS: 
+	TESTING ENCRYPTION ->                            SUCCESS
+		| The secret message" 03 U) Q^ m= Bz/; sq UD nV 2a 43/, 6_ Q8 SF 01 00 Nt xj Bz/.n 03 UD Q8 TR If/, S! 03 sA 04 02/!" has been decrypted as:
+		| 	| "I went to get pizza; it was great and awesome, but then unfortunately David Brown stole my pizza. 
+		| 	| I was then very sad, until I joined Laurier FinTech! "
+
+-----------------------------------
+CLASS MARK:	52/52
