@@ -1,4 +1,3 @@
-import wordTest
 from ProcessorSolution import Processor
 from BigBookSolutions import BigBook
 class TestOne:
@@ -8,73 +7,92 @@ class TestOne:
 
     Scoring:
     - TestOne(): 2 marks
-    - TestTwo(): 6 marks
-    - TestThree(): 6 marks
-    - TestFour(): 4 marks
+    - TestTwo(): 10 marks
+    - TestThree(): 10 marks
+    - TestFour(): 5 marks
 
     Total Possible Marks: 18
     """
     CORRECT = "I Love Laurier FinTech!"
     TEST = "I Love Laurier FinTech!<>"
     TESTREVERSE = "<>FinTech! Laurier Love I"
+    GOOD = ["I ", "Love ", "Laurier ", "FinTech!"]
     def __init__(self):
         """
         Creates all Objects to be tested
         """
         self.stack = Processor(True)
-        self.queue = Processor(True)
+        self.queue = Processor(False)
         self.queueFin = Processor(False)
         print(f'\nThe Word Processor Problem\n===================================')
         self.mark = self.test_one() + self.test_two() + self.test_three() + self.test_four()
-        print(f'-----------------------------------\nCLASS MARK:\t{self.mark}/18')
+        print(f'\n-----------------------------------\nCLASS MARK:\t{int(self.mark)}/27')
 
     def test_one(self):
         """
         [2 Marks] Tests to see if both stacks and queue's can clear an empty remove
         """
+        print("1. ERROR CHECK")
         self.stack.remove()
-        print(wordTest.format_output("TEST BLANK REMOVE FROM STACK", True))
+        print(format_output("TEST BLANK REMOVE FROM STACK", True))
         self.queue.remove()
-        print(wordTest.format_output("TEST BLANK REMOVE FROM QUEUE", True))
+        print(format_output("TEST BLANK REMOVE FROM QUEUE", True))
         return 2
 
     def test_two(self):
         """
-        [6 Marks] Tests to see if the stack can pop and push correctly
+        [10 Marks] Tests the stack for pop and push
         """
         mark = 0
         splits = self.TESTREVERSE.split(" ")
-        print("TESTING STACK FUNCTIONS")
+        split = self.TEST.split(" ")
+        print("2. TESTING STACK FUNCTIONS")
         for i,word in enumerate(splits):
             self.stack.insert(word)
-            get =(len(self.stack.store)) == 1
-            print(wordTest.format_output(f"INSERT '{word}'", get))
+            get =(len(self.stack.store)) == i + 1
+            print(format_output(f"INSERT '{word}'", get))
             if get:
                 mark += 1
-        check = self.stack.remove_all()
-        if self.CORRECT == check:
-            mark = 6
 
-        print(f'TEST STACK\t\t\t[{self._works(self.CORRECT == check)}]:\tEXPECTED: [{self.CORRECT}]; ACTUAL: [{check}]')
+        for test in self.GOOD:
+            good = False
+            check = self.stack.remove()
+            if check == test:
+                good = True
+                mark += 1.5
+            print(format_output(f"REMOVE ['{test}' expected]", good))
         return mark
 
     def test_three(self):
         """
-        [6 Marks] Tests to see if enqueue and dequeue works correctly
+        [10 Marks] Tests the queue for enqueue and dequeue
         """
         mark = 0
-        self.queue.write_many(self.TESTREVERSE)
-        check = self.queue.remove_all()
-        if self.CORRECT == check:
-            mark = 6
-        print(f'TEST QUEUE\t\t\t[{self._works(self.CORRECT == check)}]:\tEXPECTED: [{self.CORRECT}]; ACTUAL: [{check}]')
+        splits = self.TEST.split(" ")
+        print("3. TESTING QUEUE FUNCTIONS")
+        for i,word in enumerate(splits):
+            self.queue.insert(word)
+            get =(len(self.queue.store)) == i + 1
+            print(format_output(f"INSERT '{word}'", get))
+            if get:
+                mark += 1
+
+        for test in self.GOOD:
+            good = False
+            check = self.queue.remove()
+            if check == test:
+                good = True
+                mark += 1.5
+            else:
+                print(check)
+            print(format_output(f"REMOVE ['{test}' expected]", good))
         return mark
 
     def test_four(self):
         """
-        [4 Marks] Tests to see if it can properly encode and decode 'interstellar.txt'
+        [5 Marks] Tests to see if it can properly encode and decode a full text file of any size
         """
-        marks = 4
+        marks = 5
         lines = self.queueFin.read_file("interstellar.txt")
         faulty = True
         self.queueFin.write("newstellar.txt")
@@ -86,18 +104,10 @@ class TestOne:
                 if text1.readline() != text2.readline():
                     faulty = False
                     marks = 0
-        print(f'TEST FILE IO\t\t[{self._works(faulty)}]:\tEXPECTED: ["interstellar.txt"]; ACTUAL: ["newstellar.txt"]')
+        print(f'TEST FILE IO:\n'
+              f'{format_output("READING/RE-WRITING FROM FILE interstellar.txt", faulty)}\n'
+              f'\t\t| EXPECTED: ["interstellar.txt"]; ACTUAL: ["newstellar.txt"]')
         return marks
-    def _works(self, boolean):
-        """
-        Text formats correct and incorrect answers.
-        """
-        output = ""
-        if boolean:
-            output = "SUCCESS"
-        else:
-            output = "FAILURE"
-        return output
 
 class TestTwo:
     """
@@ -116,16 +126,15 @@ class TestTwo:
     """
 
     def __init__(self):
-        # Initialize instances of BigBook for testing
+        """
+        Creates all Objects to be tested
+        """
         self.book = BigBook()
         self.bookOne = BigBook()
         self.bookTwo = BigBook()
-        # Initialize the mark variable to keep track of total marks
         self.mark = 0
         print(f'\nThe Big Book Problem\n===================================')
-        # Accumulate marks from individual test methods
         self.mark += self.testOne() + self.testTwo() + self.testThree() + self.testFour() + self.testFive() + self.testSix()
-        # Print the total mark for the class
         print(f'-----------------------------------\nCLASS MARK:\t{int(self.mark)}/52')
 
     def testOne(self):
@@ -158,7 +167,7 @@ class TestTwo:
             else:
                 self.book.append(FINAL[use[2]])
             good = CORRECT[i] == self.book.words
-            print(wordTest.format_output(f"INSERT '{FINAL[use[2]]}'{extra}", good))
+            print(format_output(f"INSERT '{FINAL[use[2]]}'{extra}", good))
             if good:
                 points += 2
         return points
@@ -174,7 +183,7 @@ class TestTwo:
         print("2. TESTING _LINEAR_SEARCH:")
         for i,used in enumerate(use):
             good = find[i] == self.book._linear_search_(used)
-            print(wordTest.format_output(f"SEARCH: '{used}'", good))
+            print(format_output(f"SEARCH: '{used}'", good))
             if good:
                 points += 1.5
         return points
@@ -201,7 +210,7 @@ class TestTwo:
             self.book.dict_rotate(TRY[x])
             # Check if the words list in BigBook is as expected
             good = TESTS[x] == self.book.words
-            print(wordTest.format_output(f"{extra}ROTATE: ({TRY[x]})", good))
+            print(format_output(f"{extra}ROTATE: ({TRY[x]})", good))
             if good:
                 points += POINT[x]
 
@@ -219,14 +228,14 @@ class TestTwo:
         self.book.words = NEW
         for word in USE:
             got = self.book.remove(word) == word
-            print(wordTest.format_output(f"REMOVE: '{word}'",got))
+            print(format_output(f"REMOVE: '{word}'",got))
             if got:
                 points += 1
         # Check if the words list in BigBook is as expected after removal
         got = self.book.words == LEFT
         if got:
             points += 2
-        print(wordTest.format_output("CHECKING WORD ORDER:", got))
+        print(format_output("CHECKING WORD ORDER:", got))
 
         return points
 
@@ -245,8 +254,8 @@ class TestTwo:
         got = self.bookOne.words == useThree
         if got:
             points = 10
-        print(
-            f"5. TEST UNION:\n{wordTest.format_output("Dictionary_One.union(Dictionary_Two)",got)}\n\t\t| Dictionary_One:\t\t{useOne}\n\t\t| Dictionary_Two:\t\t{useTwo}\n\t\t| .words (Expected):\t{useThree}\n\t\t| .words (Actual):\t\t{self.bookOne.words}")
+
+        print(f"5. TEST UNION:\n{format_output('DICTIONARY_ONE.UNION(DICTIONARY_TWO)',got)}\n\t\t| Dictionary_One:\t\t{useOne}\n\t\t| Dictionary_Two:\t\t{useTwo}\n\t\t| .words (Expected):\t{useThree}\n\t\t| .words (Actual):\t\t{self.bookOne.words}")
         return points
     def testSix(self):
         """
@@ -274,20 +283,10 @@ class TestTwo:
             decode += "\n"
         if get:
             points = 10
-        print(f'6. BIG BOOK CLASS: \n{wordTest.format_output("TESTING ENCRYPTION", get)}'
+        print(f'6. BIG BOOK CLASS: \n{format_output("TESTING ENCRYPTION", get)}'
               f'\n\t\t| The secret message\" {words}\" has been decrypted as:\n{decode}')
         return points
 
-    def _works(self, boolean):
-        """
-        Text formats correct and incorrect answers.
-        """
-        output = ""
-        if boolean:
-            output = "SUCCESS"
-        else:
-            output = "FAILURE"
-        return output
 
 def format_output (string, success):
     if success:
@@ -295,7 +294,7 @@ def format_output (string, success):
     else:
         success = "FAILURE"
     length = 45 - len(string)
-    return f"\t{string} -> {" " * length}{success}"
+    return f"\t{string} -> {' ' * length}{success}"
 
-one = TestOne()
-two = TestTwo()
+run = TestOne()
+run = TestTwo()
