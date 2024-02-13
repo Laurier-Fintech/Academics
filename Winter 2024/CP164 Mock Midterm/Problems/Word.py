@@ -21,7 +21,7 @@ class Word():
         """
         -------------------------------------------------------
         Initializes a Word Object which contains a string based word
-        Use: source = List()
+        Use: source = Word(word)
         -------------------------------------------------------
         Parameters:
             word - a string based word
