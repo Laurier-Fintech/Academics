@@ -288,7 +288,7 @@ points = 0
 gap(0)
 print("BIG O NOTATION MC TEST:")
 gap(0)
-quiz = ["f(n) = n^2 + 200n + log(n) + 2000", "for (i = 0; i < n; i++){\n\tsum += i\n}", "for (i = 0; i < n; i++){\n\tfor (j = 0; j < n; j++){\n\t\tsum += 1\n\t}\n}", "f(n) = 100000000000 + 2000 + 10 + 2000", "Bubble Sort has a time complexity of O(n log n)", "Quick Sort has a time complexity of O(n log n)", "Selection Sort has a time complexity of O(n^2)", "Binary search is very effective, such that its time complexity can be represented by O(n)"]
+quiz = ["f(n) = n^2 + 200n + log(n) + 2000", "for (i = 0; i < n; i++){\n\t\tsum += i\n\t}", "for (i = 0; i < n; i++){\n\t\tfor (j = 0; j < n; j++){\n\t\t\tsum += 1\n\t\t}\n\t}", "f(n) = 100000000000 + 2000 + 10 + 2000", "Bubble Sort has a time complexity of O(n log n)", "Quick Sort has a time complexity of O(n log n)", "Selection Sort has a time complexity of O(n^2)", "Binary search is very effective, such that its time complexity can be represented by O(n)"]
 for i,q in enumerate(quiz):
     print("\n\t" + q + "\n")
     if i < 4:
