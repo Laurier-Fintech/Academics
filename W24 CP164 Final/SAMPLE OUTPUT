@@ -1,0 +1,198 @@
+THE CP164 MOCK MIDTERM - WINTER 2024
+Created By: Laurier Fintech
+Written By: Jason Van Humbeck
+
+--------------------------------------------------
+RUNNING/TESTING HSJ_LINKED BELOW: 
+--------------------------------------------------
+	TESTING INSERT FUNCTION
+		Insert Blank ->                                       CORRECT
+		Insert Rear ->                                        CORRECT
+		Insert Front ->                                       CORRECT
+		Insert Full Rear ->                                   CORRECT
+		Insert Full Quote ->                                  CORRECT
+		--------------------------------------------------
+			 {(Jump), "Goddamn, "} -> {(Jump), "I "} -> {(Skip), "Treaple."} -> {(Jump), "feel "} -> {(Jump), "like "} -> {(Skip), "Apples."} -> {(Hop), "Apples."} -> {(Jump), "the "} -> {(Skip), "Apples."} -> {(Jump), "man. "} -> {(Skip), "Peaunuts."} -> {(Jump), "Freshman "} -> {(Jump), "of "} -> {(Jump), "the "} -> {(Skip), "Oranges."} -> {(Jump), "year, "} -> {(Skip), "Grapes."} -> {(Jump), "I "} -> {(Jump), "woke "} -> {(Jump), "up "} -> {(Jump), "feeling "} -> {(Jump), "like "} -> {(Jump), "the "} -> {(Jump), "man."}
+		--------------------------------------------------
+	TESTING EXPORT FUNCTION
+		Export Quote (Jump, Skip) ->                          CORRECT
+			EXPECTED: "Goddamn, I feel like the the man. Freshman of the year, I woke up feeling like the man."
+			RESULT:   "Goddamn, I feel like the the man. Freshman of the year, I woke up feeling like the man."
+		Export Quote (Hop, Skip, Jump) ->                     CORRECT
+			EXPECTED: "Lauier Fintech is Really Cool And Awesome."
+			RESULT:   "Lauier Fintech is Really Cool And Awesome."
+	TESTING REMOVE FUNCTION
+		Remove Skip (Check List)  ->                          CORRECT
+		Remove Skip (Check Removed)  ->                       CORRECT
+			EXPECTED: "Hello Fintech Pineapple And "
+			RESULT:   "Hello Fintech Pineapple And "
+
+
+	The HSJ_LINKED Class
+	--------------------------------------------------
+	YOUR GRADE 28/28
+
+
+--------------------------------------------------
+RUNNING/TESTING NDT_BST BELOW: 
+--------------------------------------------------
+	TESTING INSERT FUNCTION
+		Testing Root Insert ->                                CORRECT
+		Testing Left Insert ->                                CORRECT
+		Testing Right Insert ->                               CORRECT
+		Inserting {10,5,15,2,7,12,18,1,6,8,20,20,10,18} ->    CORRECT
+		--------------------------------------------------
+				|___| -> 10
+					|___| -> 5
+						|___| -> 2
+							|___| -> 1
+						|___| -> 7
+							|___| -> 6
+							|___| -> 8
+					|___| -> 15
+						|___| -> 12
+						|___| -> 18
+							|___| -> 20
+		--------------------------------------------------
+	TESTING EXISTS FUNCTION
+		Exists(10) ->                                         CORRECT
+		Exists(20) ->                                         CORRECT
+		Exists(7) ->                                          CORRECT
+		Exists(3) ->                                          CORRECT
+		Exists(11) ->                                         CORRECT
+	TESTING TOTAL_NODES FUNCTION
+		TotalNodes (Empty) ->                                 CORRECT
+		TotalNodes (Root) ->                                  CORRECT
+		TotalNodes (Small Tree) ->                            CORRECT
+		TotalNodes (Big Tree) ->                              CORRECT
+			EXPECTED: "11"
+			RESULT:   "11"
+	TESTING SIBLINGS FUNCTION
+		Siblings(10,15) ->                                    CORRECT
+		Siblings(5,15) ->                                     CORRECT
+		Siblings(5,18) ->                                     CORRECT
+		Siblings(30,40) ->                                    CORRECT
+		Siblings(12,18) ->                                    CORRECT
+	TESTING VEIN FUNCTION
+		Vein(20) ->                                           CORRECT
+			EXPECTED: "[10, 15, 18, 20]"
+			RESULT:   "[10, 15, 18, 20]"
+		Vein(18) ->                                           CORRECT
+			EXPECTED: "[10, 15, 18]"
+			RESULT:   "[10, 15, 18]"
+		Vein(8) ->                                            CORRECT
+			EXPECTED: "[10, 5, 7, 8]"
+			RESULT:   "[10, 5, 7, 8]"
+		Vein(10) ->                                           CORRECT
+			EXPECTED: "[10]"
+			RESULT:   "[10]"
+		Vein(30) ->                                           CORRECT
+			EXPECTED: "[]"
+			RESULT:   "[]"
+
+
+	The NDT_BST Class
+	--------------------------------------------------
+	YOUR GRADE 64.0/64
+
+
+--------------------------------------------------
+BIG O NOTATION MC TEST:
+--------------------------------------------------
+
+	f(n) = n^2 + 200n + log(n) + 2000
+
+		SELECT THE BIG O NOTATION:
+			a) O(1)
+			b) O(log n)
+			c) O(n)
+			d) O(n log n)
+			e) O(n^2)
+
+		 -> a
+
+	for (i = 0; i < n; i++){
+	sum += i
+}
+
+		SELECT THE BIG O NOTATION:
+			a) O(1)
+			b) O(log n)
+			c) O(n)
+			d) O(n log n)
+			e) O(n^2)
+
+		 -> a
+
+	for (i = 0; i < n; i++){
+	for (j = 0; j < n; j++){
+		sum += 1
+	}
+}
+
+		SELECT THE BIG O NOTATION:
+			a) O(1)
+			b) O(log n)
+			c) O(n)
+			d) O(n log n)
+			e) O(n^2)
+
+		 -> a
+
+	f(n) = 100000000000 + 2000 + 10 + 2000
+
+		SELECT THE BIG O NOTATION:
+			a) O(1)
+			b) O(log n)
+			c) O(n)
+			d) O(n log n)
+			e) O(n^2)
+
+		 -> a
+
+	Bubble Sort has a time complexity of O(n log n)
+
+		IS THIS STATEMENT TRUE OR FALSE?
+			t) TRUE
+			f) FALSE
+
+		 -> a
+
+		 -> f
+
+	Quick Sort has a time complexity of O(n log n)
+
+		IS THIS STATEMENT TRUE OR FALSE?
+			t) TRUE
+			f) FALSE
+
+		 -> f
+
+	Selection Sort has a time complexity of O(n^2)
+
+		IS THIS STATEMENT TRUE OR FALSE?
+			t) TRUE
+			f) FALSE
+
+		 -> f
+
+	Binary search is very effective, such that its time complexity can be represented by O(n)
+
+		IS THIS STATEMENT TRUE OR FALSE?
+			t) TRUE
+			f) FALSE
+
+		 -> f
+
+
+	The BIG O MC Class
+	--------------------------------------------------
+	YOUR GRADE 3/8
+
+
+
+
+***YOUR OVERALL GRADE***
+	95.0/100
+
+Process finished with exit code 0
